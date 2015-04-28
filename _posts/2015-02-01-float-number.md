@@ -142,6 +142,6 @@ function floatCount() {
 }
 {% endhighlight %}
 
-[demo在这里](/demo/flaotNumber/index.html)
+[demo在这里](/demo/floatCount/index.html)
 
 注意：浮点数的最大精度是17位，如果操作数的精度超出的话会导致计算结果有误差，还有在进行除法操作时出现循环小数的时候结果会被四舍五入.
