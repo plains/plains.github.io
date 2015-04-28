@@ -10,7 +10,7 @@ image:
 {% highlight html %}
 var n = 1.; ==> 1
 var n2 = 5.0; ==> 5
-{% highlight html %}
+{% endhighlight %}
 
 但是输出结果n变成了整数，这是因为浮点数需要的内存空间是整数的两倍，所以如果该数值本身就表示一个整数ECMAScript就会将该数值转化为整数。
 
