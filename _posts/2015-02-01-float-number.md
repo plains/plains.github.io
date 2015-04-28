@@ -54,6 +54,7 @@ PS：`toFixed()` 会将结果变成字符串.
 我封装了一个用于`+-*/`运算的的函数
 
 {% highlight html %}
+
 //@浮点数运算
 //@config arguments[0] {stirng} 运算符 +-*/
 //@config arguments[0...n] {number} 操作数
@@ -116,7 +117,7 @@ function floatCount() {
             }
             result = result / m;
             break;
-        case "\/":
+        case "/":
             var pointLen = 0, resPointLen, row, pow;
             for (i, len = arg.length; i < len; i++) {
                 row = arg[i];
@@ -124,9 +125,10 @@ function floatCount() {
                 pointLen = res[1] ? res[1].length : 0;
 
                 if (result != void 0) {
-                    resPointLen = (resPointLen = result.toString().split('.')[1]) ? resPointLen.length : 0;
-                    m = Math.max(pointLen, resPointLen);    
-                    result = transInt(result, m) / transInt(row, m);                      
+                    resPointLen = (resPointLen = result.toString().split('.')[1]) ? 
+                    				resPointLen.length : 0;
+                    m = Math.max(pointLen, resPointLen);
+                    result = transInt(result, m) / transInt(row, m);
                 } else {
                     result = row;
                 }
