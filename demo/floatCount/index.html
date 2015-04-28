@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>浮点数计算</title>
+    <link rel="stylesheet" type="text/css" href="/demo/bootstrap-3.3.4-dist/css/bootstrap.min.css">
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>浮点数计算</h1>
+
+    <p>
+        <span class="help-block">要计算的数字以“，”号分开</span>
+    </p>
+    <div class="row">
+        <div class="col-md-12 form-inline">
+            <div class="form-group">
+                <input class="form-control" type="text" id="arg1" value="0.1236,100,0.1">
+                <select class="form-control" name="" id="sec">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option selected value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <button id="countBtn" class="btn btn-info">计算</button>
+            </div>
+        </div>
+    </div>
+    <span class="help-block">计算结果：</span>
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="form-group">
+                <textarea disabled class="form-control" name="" id="countAara" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+    <button id="clearContent" class="btn btn-block btn-danger">清空</button>
+    <script>
+        function $(id) {
+            return id ? document.getElementById(id) : null;
+        }
+        //@浮点数运算
+        //@config arguments[0] {stirng} 运算符 +-*/
+        //@config arguments[0...n] {number} 操作数
+        //@return result {number}
+        //@case floatCount('*', 0.1236, 100, 0.1)
+        function floatCount() {
+            var res, len, result, i = m = 0,
+                    arg = [].slice.call(arguments),
+                    type = "+-*/".indexOf(arg[0]) > -1 ? arg.shift() : "";
+            //@取数组中最大小数位数
+            //@config arr       {array}
+            //@return result    {number}
+            function maxPointLen(arr){
+                var  n, row, len = 0, res = 0;
+                for(n = arr.length; n--;){
+                    row = arr[n].toString().split('.');
+                    len = row[1] ? row[1].length : 0;
+                    res = Math.max(len, res);
+                }
+                return res;
+            }
+            //@转化整数,使用乘法转化也会产生进度问题比如 0.1236 * 1000 ==> 123.60000000000001
+            //@config num {string}  操作数
+            //@config pow {number}  精度
+            //@return result {number}
+            //@case transInt(0.1236, 4)
+            function transInt(num, pow){
+                var len, res;
+                num = num.toString();
+                len = num.split('.');
+                len = len[1] ? len[1].length : 0;
+                return Number(num.replace('.', '')) * Math.pow(10, pow - len);
+            }
+            switch (type) {
+                case "+":
+                    m = maxPointLen(arg);
+                    for (len = arg.length; len--;) {
+                        res = transInt(arg[len], m);
+                        result = result ? result + res : res;
+                    }
+                    result = result / Math.pow(10, m);
+                    break;
+                case "-":
+                    m = maxPointLen(arg);
+                    for (i, len = arg.length; i < len; i++) {
+                        res = transInt(arg[i], m);
+                        result = result ? result - res : res;
+                    }
+                    result = result / Math.pow(10, m);
+                    break;
+                case "*":
+                    for (len = arg.length; len--;) {
+                        res = arg[len] = arg[len].toString();
+                        m += res.indexOf(".") > -1 ? res.split('.')[1].length : 0;
+                    }
+                    m = Math.pow(10, m);
+                    for (len = arg.length; len--;) {
+                        res = Number(arg[len].replace(".", ""));
+                        result = result ? result * res : res;
+                    }
+                    result = result / m;
+                    break;
+                case "\/":
+                    var pointLen = 0, resPointLen, row, pow;
+                    for (i, len = arg.length; i < len; i++) {
+                        row = arg[i];
+                        res = row.split('.');
+                        pointLen = res[1] ? res[1].length : 0;
+
+                        if (result != void 0) {
+                            resPointLen = (resPointLen = result.toString().split('.')[1]) ? resPointLen.length : 0;
+                            m = Math.max(pointLen, resPointLen);    
+                            result = transInt(result, m) / transInt(row, m);                      
+                        } else {
+                            result = row;
+                        }
+                    }
+                    break;
+                default:
+                    throw new Error("第一个参数必须是操作字符");
+                    break;
+            }
+            return Number(result);
+        }
+        !function () {
+            var $inp1 = $("arg1"),
+                $sec = $("sec"),
+                $countResult = $("countAara"),
+                $clearContent = $("clearContent"),
+                $btn = $("countBtn");
+            function triggerCountHandle(_type, _num){
+                var ref;
+                ref = _num.substring(0, _num.length - 1);
+                _num = _num.substring(_num.length - 1) === ',' ? ref: _num;
+                $countResult.value += floatCount.apply(this, (_type + "," + _num).split(',')) + '\n';
+            }
+            function handle(){
+                var num = $inp1.value,
+                    action = $sec.value;
+                if (!num) {alert('要输入计算的数值');return;}
+                triggerCountHandle(action, num);
+            }
+            $inp1.onkeyup = function(e){
+                e = e || window.event;
+                if(e.keyCode == 13){
+                    handle();
+                }
+            };
+            $btn.onclick = function (e) {
+                handle();
+            };
+            $clearContent.onclick = function (e) {
+                $countResult.value = "";
+                $inp1.value = "";
+            };
+        }();
+    </script>
+</div>
+</body>
+</html>
