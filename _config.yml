@@ -1,5 +1,5 @@
 title:            '太美的Blog'
-description:      ''
+description:      ' '
 disqus_shortname: plains
 reading_time:     true
 words_per_minute: 200
@@ -11,7 +11,7 @@ url:
 owner:
   name:           '太美'
   avatar:         avatar.jpg
-  bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
+  bio:            "前端路漫漫，唯有码作伴"
   email:          ifmeto@163.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
@@ -23,7 +23,7 @@ owner:
   flickr:         
   tumblr:         
   # google plus id, include the '+', eg +mmistakes
-  google_plus:    +yourid
+  google_plus:
 
 # Background image to be tiled on all pages
 background: 
