@@ -6,8 +6,8 @@ image:
   feature: abstract-7.jpg
 ---
 javaScript中有两个计时器的函数
--	setTimeout(func, delay)
--	setInterval(func, delay)
+*	setTimeout(func, delay)
+*	setInterval(func, delay)
 
 它们都接受执行函数和延迟时间两个参数,不同的是setTimeout只会调用一次，setInterval会周期调用。
 相对的还有清除计时器的函数``clearTimeout(timer) clearInterval(interval)``
