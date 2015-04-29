@@ -1,7 +1,7 @@
 ---
 layout: post
 title: javaScript计时器
-tags: [css]
+tags: [javascript]
 image:
   feature: abstract-7.jpg
 ---
