@@ -82,7 +82,7 @@ do{
 [我是demo!!](http://jsbin.com/cavipu/1)
 PS：**++我并没有找到任何文档来解释上面理论，这只是我的猜测，如果您能帮我证明这个理论是正确的，万分感谢++**
 
-#####计时器的最小延迟
+##计时器的最小延迟
 经常能看到这样的面试题
 
 {% highlight javascript %}
@@ -98,7 +98,7 @@ function func(){
 问:``alert``会弹出什么? 结果是弹出了1。
 关于delay延迟时间，不同的浏览器都会有自己的最小延迟时间，所以就算你写成0，也会按照浏览器的最小延迟时间执行，比如Chrome的最小延迟时4ms,IE的是23毫秒，当然这个时间并不准确，可能会受到硬件的影响。
 
-#####JS线程与GUI线程互斥
+##JS线程与GUI线程互斥
 这个我写了很久，最后还是觉得没有 [@轻薄](http://qingbob.com/difference-between-settimeout-setinterval/) 写的好，为了不误人子弟，我还是放弃了，不过文章中关于多个`setInterval`会被"忽略"的理论，已经在上面被证实是错误的。
 
 
@@ -186,7 +186,7 @@ console.timeEnd("timer");
 
 没错，就是输出ul的offsetHeight，然后我又试了`clientWH, offsetWH, scrollWH`，发现timeEnd输出的时间和dom渲染完成时间一致。我猜这可能是浏览器为了保证能够及时获取到元素布局所做的调整吧.
 
-#####扩展
+##扩展
 在上文中提到过JavaScript是单线程的，还有执行队列，但是实际上经常会遇到异步代码，比如说：
 
 -	计时器
