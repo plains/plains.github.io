@@ -1,6 +1,6 @@
-title:            '太美的Blog'
+title:            'Central Plains Blog'
 description:      ' '
-disqus_shortname: plains
+disqus_shortname: Plains
 reading_time:     true
 words_per_minute: 200
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
@@ -9,9 +9,9 @@ url:
 
 # Owner/author information
 owner:
-  name:           '太美'
+  name:           'Central Plains'
   avatar:         avatar.jpg
-  bio:            "前端路漫漫，唯有码作伴"
+  bio:            ""
   email:          ifmeto@163.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
